@@ -4,13 +4,16 @@ from typing import List, Tuple, Type, Optional, Dict
 from datetime import datetime
 from src.plugin_system import (BasePlugin, register_plugin, BaseCommand, ComponentInfo, ConfigField)
 from src.common.logger import get_logger
+from src.plugin_system.apis import chat_api
 
 logger = get_logger("russian_roulette")
 
 class RussianRouletteCommand(BaseCommand):
-    command_pattern = r"^兔子开枪$" # 精确匹配 "兔子开枪" 命令
-    command_help = "在命运的舞台上，谁将成为这场游戏的主角？一场关于勇气与荣耀的对决即将开始！"
-    command_examples = ["兔子开枪"]
+    command_name = "麦麦开枪"
+    command_description = "参与麦麦轮盘游戏，随机禁言一名参与者。"
+    command_pattern = r"^麦麦开枪$"
+    command_help = "使用方法: 使用指令“麦麦开枪” - 开始游戏，参与者将被随机禁言。"
+    command_examples = ["麦麦开枪"]
     intercept_message = True # 拦截消息，不让其他组件处理
     
     game_data: Dict = {}
@@ -27,18 +30,20 @@ class RussianRouletteCommand(BaseCommand):
 
     async def execute(self) -> Tuple[bool, str]:
         try:
-            logger.info(f"{self.log_prefix} 开始执行麦麦开枪游戏命令")            
-            # 检查是否在群聊中
-            if not self.api.get_chat_type() == "group":
-                await self.send_text("英雄的对决需要一个舞台，这场游戏只能在群聊的竞技场中上演。")
-                return False, "非群聊环境"
+            logger.info(f"{self.log_prefix} 开始执行麦麦开枪游戏命令") 
+                       
             # 获取当前聊天流信息
             logger.info(f"{self.log_prefix} 尝试获取聊天流信息")
-            chat_stream = self.api.get_service("chat_stream")
+            chat_stream = self.message.chat_stream
             if not chat_stream:
                 logger.info(f"{self.log_prefix} 获取聊天流信息失败")
                 await self.send_text("获取聊天信息失败")
                 return False, "获取聊天信息失败"
+            
+            # 检查是否在群聊中
+            if chat_api.get_stream_type(chat_stream) != "group":
+                await self.send_text("英雄的对决需要一个舞台，这场游戏只能在群聊的竞技场中上演。")
+                return False, "非群聊环境"
             
             # 获取用户及群组信息
             user_id = str(chat_stream.user_info.user_id)
@@ -219,7 +224,7 @@ class RussianRouletteCommand(BaseCommand):
             
 @register_plugin
 class RussianRoulettePlugin(BasePlugin):
-    """麦麦开枪游戏插件
+    """麦麦轮盘游戏插件
     - 支持多人参与的开枪游戏
     - 支持自动禁言参与者
     - 支持游戏超时自动结束
