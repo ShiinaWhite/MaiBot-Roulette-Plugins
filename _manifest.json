@@ -1,8 +1,8 @@
 {
   "manifest_version": 1,
-  "name": "russian_roulette",
+  "name": "麦麦轮盘",
   "version": "1.0.0",
-  "description": "麦麦轮盘插件",
+  "description": "在命运的舞台上，勇士们围坐一圈，手中紧握那把只装有一颗子弹的左轮手枪。每一次扣动扳机，都是对勇气与命运的挑战。枪声响起，欢笑与紧张交织，荣耀与沉默只在一瞬之间。谁会成为这场故事的主角？谁会是下一个被命运选中的人？",
   "author": {
     "name": "野生的金属乌帕",
     "url": "https://github.com/ShiinaWhite"
