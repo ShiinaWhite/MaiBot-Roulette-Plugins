@@ -14,7 +14,7 @@
   },
   "keywords": ["game", "russian-roulette", "moderation", "entertainment", "group-management"],
   "categories": ["Game", "Moderation", "Entertainment"],
-  "repository_url": "https://github.com/ShiinaWhite/MaiBot-Roulette-Plugin",
+  "repository_url": "https://github.com/ShiinaWhite/MaiBot-Roulette-Plugins",
   "default_locale": "zh-CN",
   "locales_path": "_locales"
 }
