@@ -139,7 +139,7 @@ class RussianRouletteCommand(BaseCommand):
                     "qq_id": str(unlucky_player["user_id"]), 
                     "duration": str(mute_seconds)
                 },
-                display_message=f"禁言了 {unlucky_player['user_name']} {formatted_duration}"
+                storage_message=False
             )
 
             if not success:
