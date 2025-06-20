@@ -3,7 +3,7 @@
 
 ## 插件简介
 本插件适配 MaiM-with-u 最新的插件系统，能够为群聊或私聊带来刺激的俄罗斯轮盘体验。玩法简单，规则灵活，适合娱乐和活跃气氛。
-![俄罗斯轮盘插件](E:/AI Bot/MaiM-with-u/MaiBot/plugins/russian_roulette/b2b23755-6a2a-4efd-892a-feebff597396.png)
+![示例](depends-data/示例.png)
 
 ## 主要功能
 - 支持经典俄罗斯轮盘玩法
